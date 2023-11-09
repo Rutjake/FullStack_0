@@ -1,32 +1,42 @@
 import './App.css'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
-import Note from './components/Note'
+import noteService from './services/notes'
+
 
 function App() {
   const [notes, setNotes] = useState([])
-  //const [newNote, setNewNote] = useState('')
-  //const [showAll, setShowAll] = useState(true)
+  const [newNote, setNewNote] = useState('')
 
+  // Get Data From Backend
   useEffect(() => {
-    console.log('effect')
-    axios
-      .get('http://localhost:3001/api/persons')
-      .then(response => {
-        console.log('promise fullfilled')
-        setNotes(response.data)
-        console.log(response.data)
+    noteService
+      .getAll()
+      .then(initialNotes => {
+        setNotes(initialNotes)
+        console.log(initialNotes)
       })
-
   }, [])
-  console.log('render', notes.length, 'notes')
 
 
+
+  const addNote = (event) => {
+    event.preventDefault()
+    const noteObject = {
+      name: newNote,
+      number: Math.random() > 0.5,
+    }
+    noteService
+      .create(noteObject)
+      .then(response => {
+        setNotes(notes.concat(response.data))
+        setNewNote('')
+      })
+  }
 
   return (
     <>
       <div>
-        
+        <h1>Moi</h1>
       </div>
     </>
   )
