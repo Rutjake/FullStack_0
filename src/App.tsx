@@ -36,8 +36,18 @@ function App() {
   return (
     <>
       <div>
-        <h1>Moi</h1>
+        <h2>Phonebook</h2>
+        <form>
+          <div>name: <input /></div>
+          <div>number: <input /></div>
+          <div>
+            <button type="submit">add</button>
+          </div>
+        </form>
+        <h2>Numbers</h2>
+        <p></p>
       </div>
+
     </>
   )
 }
