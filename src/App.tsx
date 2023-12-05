@@ -13,7 +13,7 @@ function App() {
       .getAll()
       .then(initialNotes => {
         setNotes(initialNotes)
-        console.log(initialNotes)
+        console.log(notes)
       })
   }, [])
 
@@ -45,7 +45,9 @@ function App() {
           </div>
         </form>
         <h2>Numbers</h2>
-        <p></p>
+          {notes.map((item) => (
+          <p key={item.id}>{item.name}</p>
+          ))}
       </div>
 
     </>
